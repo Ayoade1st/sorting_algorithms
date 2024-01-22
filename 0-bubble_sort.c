@@ -1,53 +1,34 @@
 #include "sort.h"
 
-
 /**
- *swap_num - Swap two numbers.
- *@a: First number.
- *@b: Second number.
- *
- *
- *Return: Nothing.
+ * bubble_sort - sorts an array of integers using the Bubble sort algorithm
+ * @array: pointer array of integers
+ * @size: size of array
+ * Return: void
  */
 
-void swap_num(int *a, int *b)
-{
-	int tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-/**
- *bubble_sort - Sorts an array of integers in
- *		ascending order using the Bubble sort algorithm.
- *@array: Array to sort.
- *@size: size of array.
- *
- *
- *Return: Nothing.
- */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i;
-	bool sorted = false;
+	int temp;
+	size_t i, endsize;
 
-	if (array == NULL || size < 2)
+	if (size < 2)
 		return;
 
-	while (!sorted)
+	endsize = size - 1;
+	while (endsize != 0)
 	{
-		sorted = true;
-		for (i = 0; i < size - 1; i++)
+
+		for (i = 0; i < endsize; i++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[i + 1] < array[i])
 			{
-				swap_num(array + i, array + i + 1);
+				temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
 				print_array(array, size);
-				sorted = false;
 			}
 		}
+		endsize--;
 	}
 }
-
